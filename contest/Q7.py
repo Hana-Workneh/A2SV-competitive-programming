@@ -1,0 +1,23 @@
+I=1
+V=5
+X=10
+L=50
+C=100
+D=500
+M=1000
+romanNum=input()
+arabicNum=0
+for i in range(len(romanNum)):
+    if(romanNum[i]=="I"):
+        arabicNum=arabicNum+I
+    elif(romanNum[i]=="V"):
+        arabicNum=arabicNum+V
+    elif(romanNum[i]=="X"):
+        arabicNum=arabicNum+X
+    elif(romanNum[i]=="L"):
+        arabicNum=arabicNum+L
+    elif(romanNum[i]=="C"):
+        arabicNum=arabicNum+D
+    elif(romanNum[i]=="M"):
+        arabicNum=arabicNum+M
+print(arabicNum)
