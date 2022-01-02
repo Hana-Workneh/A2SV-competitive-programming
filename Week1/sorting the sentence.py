@@ -6,7 +6,7 @@ class Solution:
         for i in splited:
             splited.sort(key = lambda x:x[-1])   
         for i in range(len(splited)):
-            temp=str(splited[i])
+            temp=splited[i]
             tempFinal=temp[:-1]
             res.append(tempFinal)
         res=" ".join(res)
