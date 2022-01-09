@@ -1,0 +1,11 @@
+#hackerrank
+M=int(input())
+M = set(map(int, input().split()))
+N=int(input())
+N = set(map(int, input().split()))
+U = M.union(N)
+I = M.intersection(N)
+diff = U.difference(I)
+diff=list(diff)
+diff.sort()
+print(*diff, sep="\n") 
