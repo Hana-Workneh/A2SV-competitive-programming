@@ -6,9 +6,9 @@ class Solution:
         par['{']='}'
         par['[']=']'
         stack = []
-        for char in s:
-            if char in par.keys():
-                stack.append(char)
-            elif len(stack) == 0 or char != par[stack.pop()]:
-                return false
+        for i in s:
+            if i in par.keys():
+                stack.append(i)
+            elif len(stack) == 0 or i != par[stack.pop()]:
+                return False
         return len(stack) == 0
