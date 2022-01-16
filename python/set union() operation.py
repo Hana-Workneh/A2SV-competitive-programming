@@ -1,0 +1,6 @@
+n = int(input())
+e = set(input().split())
+b = int(input())
+f = set(input().split())
+u=list(e.union(f))
+print(len(u))
