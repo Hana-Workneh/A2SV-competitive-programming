@@ -17,3 +17,19 @@ class Solution:
                             continue
                             
             return stack
+        
+       #OR 
+        
+        """ using monotonic stack """
+        
+    class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:     
+        dicti = {}
+        stack = [nums2[0]]
+        for i in nums2:
+            while stack and i >= stack[-1]:
+                dicti[stack.pop()] = i
+            stack.append(i)
+        for j in stack:
+            dicti[j] = -1
+        return [dicti[j] for j in nums1]
