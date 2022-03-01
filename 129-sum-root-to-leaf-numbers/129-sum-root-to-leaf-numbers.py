@@ -7,23 +7,38 @@
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         self.total = 0
+   #recursive solution 1     
+#         def recur(node,value):
+#             if not node.left and not node.right:
+#                 self.total += int(value)
+#                 return 
+            
+#             if node.left:
+#                 recur(node.left, value + str(node.left.val))
+                
+#             if node.right:
+#                 recur(node.right, value + str(node.right.val))
         
+#         recur(root,str(root.val))
+        
+#         return self.total   
+#recursive solution 2   
         def recur(node,value):
             if not node.left and not node.right:
                 self.total += int(value)
                 return 
             
             if node.left:
-                recur(node.left, value + str(node.left.val))
+                recur(node.left, 10 * value + node.left.val)
                 
             if node.right:
-                recur(node.right, value + str(node.right.val))
+                recur(node.right, 10 * value + node.right.val)
         
-        recur(root,str(root.val))
+        recur(root,root.val)
         
         return self.total   
-            
-        
+#recursive solution 2       
+#    iterative solution        
 #         if not root.left and not root.right:
 #             return root.val
         
