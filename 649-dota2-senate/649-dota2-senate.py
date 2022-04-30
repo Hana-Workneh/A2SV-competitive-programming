@@ -1,28 +1,14 @@
 class Solution:
     def predictPartyVictory(self, senate: str) -> str:
-        """
-        :type senate: str
-        :rtype: str
-        """
-        s = list(senate)
-        i = j = 0
-        while True:
-            while i < len(s) and s[i] != 'R': # find the next Radiant representative
-                i += 1
-            if i == len(s):
-                return 'Dire'
-
-            while j < len(s) and s[j] != 'D': # find the next Dire representative
-                j += 1
-            if j == len(s):
-                return 'Radiant'
-
-            if i < j:     # after voting, move the voted representative to the end of the list
-                s[j] = 'X'
-                s.append('R')
+        senate, size = list(senate), len(senate)
+        rIndex = deque([i for i in range(size) if senate[i] == 'R'])
+        dIndex = deque([i for i in range(size) if senate[i] == 'D'])
+        while rIndex and dIndex:
+            r, d = rIndex.popleft(), dIndex.popleft()
+            if r > d:
+                dIndex.append(size+d)
             else:
-                s[i] = 'X'
-                s.append('D')
-
-            i += 1
-            j += 1
+                rIndex.append(size+r)
+        if not rIndex:
+            return "Dire"
+        return "Radiant"
