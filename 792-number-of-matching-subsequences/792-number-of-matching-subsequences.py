@@ -2,7 +2,6 @@ class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
         count = 0
         memo = {}
-        
         for word in words:
             if word in memo:
                 if memo[word]:
@@ -16,13 +15,7 @@ class Solution:
                     i += 1
                 else:
                     j += 1
-                    
             if i == len(word):
                 count += 1
-                memo[word] = True
-            else:
-                memo[word] = False
+            memo[word] = (i == len(word))
         return count
-
-                
-                
