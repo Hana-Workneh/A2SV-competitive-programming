@@ -4,9 +4,20 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         n = len(nums)
+        red, white, blue = 0, 0, 0
+        
         for i in range(n):
-            for j in range(n - i -1):
-                if nums[j] > nums[j+1]:
-                    nums[j], nums[j+1] = nums[j+1], nums[j]
-                    
-        return
+            if nums[i] == 0:
+                red += 1
+            if nums[i] == 1:
+                white += 1
+            if nums[i] == 2:
+                blue += 1
+    
+        for i in range(red):
+            nums[i] = 0
+        for i in range(white):
+            nums[red + i]=1
+        for i in range(blue):
+            nums[white + red + i]=2
+ 
