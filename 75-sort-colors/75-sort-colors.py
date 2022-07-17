@@ -17,7 +17,7 @@ class Solution:
         for i in range(red):
             nums[i] = 0
         for i in range(white):
-            nums[red + i]=1
+            nums[red + i] = 1
         for i in range(blue):
-            nums[white + red + i]=2
+            nums[white + red + i] = 2
  
