@@ -1,7 +1,9 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        count, size = Counter(nums), len(nums)
-        for key, value in count.items():
-            if value > size//2:
-                return key
-        return 0
+        nums = Counter(nums)
+        n = len(nums)
+        for i in nums.values():
+            if i >= n//2 and i == max(nums.values()):
+                ind= list(nums.values()).index(i)
+                key = list(nums.keys())
+                return key[ind]
