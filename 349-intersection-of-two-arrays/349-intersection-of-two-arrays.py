@@ -6,7 +6,5 @@ class Solution:
             if i in nums2:
                 res.append(i)
                 
-        for i in nums2:
-            if i in nums1 and i not in res:
-                res.append(i)
+        
         return res
