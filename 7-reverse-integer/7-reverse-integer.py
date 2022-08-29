@@ -1,17 +1,17 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        s = str(x)
-        p = s[::-1]
-        if "-" in s:
-            num = p.replace("-","")
+        n = 0
+        r = x
+        x = abs(x)
+        while x>0:
+            n = (n*10) + x%10
+            x=x//10
             
-            result =  (int(num)-int(num)*2)
-            
-        else:
-            result =  int(p)
-            
-        if result > -2**31-1 and result < 2**31-1:
-            
-            return result
-        else:
+        ans = -n if r<0 else n
+        if ans<0 and ans<-2**31:
             return 0
+        
+        if ans>2**31-1:
+            return 0
+        return ans
+        
