@@ -1,19 +1,23 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        def dfs(r,c,grid):
-            if r < 0 or c < 0 or r >= len(grid) or c >= len(grid[0]) or grid[r][c] != '1':
-                return
-            
-            grid[r][c] = '0'
-            dfs(r+1,c,grid)
-            dfs(r-1,c,grid)
-            dfs(r,c+1,grid)
-            dfs(r,c-1,grid)
+        islands = 0
         
-        countOfIsland = 0
-        for r in range(len(grid)):
-            for c in range(len(grid[0])):
-                if grid[r][c] == '1':
-                    countOfIsland += 1
-                    dfs(r,c,grid)
-        return countOfIsland
+        def find_islands(m, n):
+            grid[m][n] = '*'
+            
+            if m >= 1 and grid[m-1][n] == '1':
+                find_islands(m-1, n)
+            if m < len(grid) - 1 and grid[m+1][n] == '1':
+                find_islands(m+1, n)
+            if n >= 1 and grid[m][n-1] == '1':
+                find_islands(m, n-1)
+            if n < len(grid[0]) - 1 and grid[m][n+1] == '1':
+                find_islands(m, n+1)
+            
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == '1':
+                    islands += 1
+                    find_islands(i, j)
+        
+        return islands
