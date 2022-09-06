@@ -6,8 +6,26 @@
 #         self.right = right
 class Solution:
     def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root: return None
-        root.left, root.right = self.pruneTree(root.left), self.pruneTree(root.right)
-        return root if (root.left or root.right or root.val == 1) else None
-
         
+        def dfs(node):
+            if not node:
+                return False
+            
+            left = dfs(node.left)
+            
+            right = dfs(node.right)
+            
+            if not left:
+                node.left = None
+                
+            if not right:
+                node.right = None
+                
+            return left or right or node.val
+        
+        ret = dfs(root)
+        
+        if ret:
+            return root
+        else:
+            return None
