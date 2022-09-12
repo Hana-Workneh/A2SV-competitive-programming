@@ -1,20 +1,20 @@
 class Solution:
-    def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
+    def bagOfTokensScore(self, token: List[int], power: int) -> int:
+        l=0
+        r = len(token)-1
         score=0
-        tokens.sort()
-        i=0
-        j=len(tokens)-1
-        mx=0
-        while i<=j:
-            if tokens[i]<=power:
-                power-=tokens[i]
+        token.sort()
+        ans=0
+        while l<=r:
+            if power>=token[l]:
+                power -= token[l]
                 score+=1
-                i+=1
-                mx=max(mx,score)
-            elif score>0:
-                score-=1
-                power+=tokens[j]
-                j-=1
+                ans = max(ans,score)
+                l+=1
+            elif score>=1:
+                power += token[r]
+                score -=1
+                r-=1
             else:
                 break
-        return mx
+        return ans
