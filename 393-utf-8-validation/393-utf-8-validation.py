@@ -1,28 +1,23 @@
 class Solution:
-    def validUtf8(self, data):
-        state = -1
-        cnt = 0 
-        for d in data :
-            if state == -1 : # setting type
-                if d < 128 :
-                    state = 1 
-                elif 192 <= d < 224 :
-                    state = 2 
-                elif 224 <= d < 240 :
-                    state = 3 
-                elif 240 <= d < 248 :
-                    state = 4 
-                else :
-                    return False 
-                cnt = state-1
-            else :
-                if d < 128 or d >= 192 :
-                    return False 
-                cnt -= 1 
-
-
-            if cnt == 0 :
-                state = -1 
-
-
-        return cnt == 0
+    def validUtf8(self, data: List[int]) -> bool:
+        if data[0]>247:return False
+        def b(x):
+            bx=-1
+            for i in range(7,3,-1):
+                if x>>i&1:
+                    bx+=1
+                else:break
+            return bx
+        
+        bx=0
+        N=len(data)
+        for i in range(N):
+            if bx>0:
+                if 128>data[i] or data[i]>191:return False
+                bx-=1
+            else:
+                if data[i]>127:
+                    bx=b(data[i])
+                    if bx==0 or bx>N-1:return False
+                    
+        return True
