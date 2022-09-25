@@ -1,48 +1,42 @@
-class Node:
-    def __init__(self, val = None):
-        self.val = val
-        self.next = None
-
 class MyCircularQueue:
     def __init__(self, k: int):
-        self.cap = k
-        self.N = 0
-        self.initialize()
-
-    def initialize(self):
-        self.head = Node(-1)
-        self.rear = self.front = self.head
+        self.k = k
+        self.q = []
 
     def enQueue(self, value: int) -> bool:
-        if not self.isFull():
-            self.rear.next = Node(value)
-            self.rear = self.rear.next
-            
-            if self.front.val == -1:
-                self.front = self.front.next
-            
-            self.N += 1
-            return 1
-  
+        if len(self.q) == self.k:
+            return False
+        self.q.append(value)
+        return True
+
     def deQueue(self) -> bool:
-        if not self.isEmpty():
-            f = self.front
-            self.front = f.next
-            del f
-            
-            self.N -= 1
-            if self.N == 0:
-                self.initialize()
-            return 1
-      
+        if not self.q:
+            return False
+        self.q = self.q[1:]
+        return True
+
     def Front(self) -> int:
-        return -1 if self.isEmpty() else self.front.val
+        if not self.q:
+            return -1
+        return self.q[0]
 
     def Rear(self) -> int:
-        return -1 if self.isEmpty() else self.rear.val
+        if not self.q:
+            return -1
+        return self.q[-1]
 
     def isEmpty(self) -> bool:
-        return self.N == 0
+        return not self.q
 
     def isFull(self) -> bool:
-        return self.cap == self.N 
+        return len(self.q) == self.k
+
+
+# Your MyCircularQueue object will be instantiated and called as such:
+# obj = MyCircularQueue(k)
+# param_1 = obj.enQueue(value)
+# param_2 = obj.deQueue()
+# param_3 = obj.Front()
+# param_4 = obj.Rear()
+# param_5 = obj.isEmpty()
+# param_6 = obj.isFull()
