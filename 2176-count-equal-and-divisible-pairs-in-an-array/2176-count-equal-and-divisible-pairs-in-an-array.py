@@ -8,6 +8,5 @@ class Solution:
                         count+=1
                     else:
                         continue
-                else:
-                    continue
+               
         return count
